@@ -9,7 +9,8 @@ from handlers.handlers import router
 
 async def set_commands():
     await bot.set_my_commands([
-            BotCommand(command='start', description='Старт'),
+            BotCommand(command='start', description='Start'),
+            BotCommand(command='test_db', description='Test DB connection'),
         ],
         BotCommandScopeDefault()
     )

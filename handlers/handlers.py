@@ -17,7 +17,7 @@ async def cmd_start(message: Message):
     )
 
 @router.message(F.text == 'Test Database connection')
-async def cmd_test_db(message: Message):
+async def admin_test_db(message: Message):
     result = await test_db_connection()
     await message.answer(
         result,
@@ -25,7 +25,7 @@ async def cmd_test_db(message: Message):
     )
 
 @router.message(F.text == 'Test Google connection')
-async def cmd_test_gsheets(message: Message):
+async def admin_test_gsheets(message: Message):
     result = test_gsheets_connection()
     await message.answer(
         result,

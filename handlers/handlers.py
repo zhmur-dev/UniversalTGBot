@@ -3,6 +3,7 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 
 from database.database import test_db_connection
+from gsheets.gsheets import test_gsheets_connection
 from keyboards.keyboards import feedback_kb
 
 
@@ -18,6 +19,14 @@ async def cmd_start(message: Message):
 @router.message(Command('test_db'))
 async def cmd_test_db(message: Message):
     result = await test_db_connection()
+    await message.answer(
+        result,
+        reply_markup=feedback_kb()
+    )
+
+@router.message(Command('test_gsheets'))
+async def cmd_test_gsheets(message: Message):
+    result = test_gsheets_connection()
     await message.answer(
         result,
         reply_markup=feedback_kb()

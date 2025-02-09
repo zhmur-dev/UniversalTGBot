@@ -22,7 +22,7 @@ async def register_new_user(
         await session.commit()
 
 
-async def check_user_by_id(telegram_id: int):
+async def get_user_by_id(telegram_id: int):
     async with AsyncSessionLocal() as session:
         result = await session.execute(
             select(User).where(User.telegram_id == telegram_id)

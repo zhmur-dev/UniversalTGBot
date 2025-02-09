@@ -4,6 +4,7 @@ import logging
 from aiogram.types import BotCommand, BotCommandScopeDefault
 
 from create_bot import bot, dp
+from database.database import set_up_db
 from handlers.handlers import router
 
 
@@ -16,6 +17,7 @@ async def set_commands():
 
 
 async def main() -> None:
+    await set_up_db()
     dp.include_router(router)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)

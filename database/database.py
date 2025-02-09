@@ -1,4 +1,5 @@
 from decouple import config
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from sqlalchemy.sql import text
@@ -21,6 +22,22 @@ AsyncSessionLocal = sessionmaker (
 
 
 class Base(DeclarativeBase): pass
+
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, index=True)
+    telegram_id = Column(Integer)
+    username = Column(String)
+    first_name = Column(String)
+    last_name = Column(String)
+    authorized = Column(Boolean)
+    registered = Column(DateTime)
+
+
+async def set_up_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 
 async def test_db_connection():

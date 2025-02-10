@@ -2,7 +2,8 @@ from datetime import datetime
 
 from sqlalchemy import select
 
-from database.database import AsyncSessionLocal, User
+from database.config import AsyncSessionLocal
+from database.models import User
 
 
 async def register_new_user(

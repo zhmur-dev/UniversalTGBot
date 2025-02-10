@@ -2,11 +2,11 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 
-from database.users import get_user_by_id, register_new_user
+from database.crud import get_user_by_id, register_new_user
 from keyboards.keyboards import main_kb
 
-
 start_router = Router()
+
 
 @start_router.message(CommandStart())
 async def cmd_start(message: Message):
